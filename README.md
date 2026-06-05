@@ -4,7 +4,7 @@
 
 Ce projet a pour objectif de collecter, extraire et transformer automatiquement des documents juridiques et fiscaux provenant de sites institutionnels africains.
 
-Le pipeline est composé de trois scripts Python :
+Le projet est composé de trois scripts Python :
 
 ### 1. Collecte des documents PDF
 
