@@ -8,7 +8,7 @@ Le projet est composé de trois scripts Python :
 
 ### 1. Collecte des documents PDF
 
-`extraction_pdf.py`
+`éxtraction_pdf.py`
 
 * Parcourt une liste de sites gouvernementaux africains.
 * Recherche les documents disponibles (principalement les PDF).
