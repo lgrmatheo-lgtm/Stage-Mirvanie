@@ -51,12 +51,18 @@ Documents_Legaux/
 ├── extraction_textes_brut.py
 ├── script_extraction_textes_propres.py
 ├── README.md
+├── static/
 └── Dossiers pays/
     ├── Maroc/
     ├── Sénégal/
     ├── Kenya/
     └── ...
 ```
+
+## installation & execution
+
+> uv init
+> ud run extraction_pdf.py
 
 ## Objectif
 
