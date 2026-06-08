@@ -1,0 +1,13 @@
+[project]
+name = "stage-mirvanie"
+version = "0.1.0"
+description = "projet stage Mirvanie"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "fitz>=0.0.1.dev2",
+    "frontend>=0.0.3",
+    "pypdf2>=3.0.1",
+    "requests>=2.34.2",
+]
