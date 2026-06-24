@@ -4,10 +4,6 @@ import os
 import re
 
 
-# =========================
-# OUTILS DE NETTOYAGE
-# =========================
-
 def clean_number(x):
     if pd.isna(x):
         return ""
@@ -65,10 +61,6 @@ def safe_series(df, col1, col2=None):
     return pd.Series([""] * len(df))
 
 
-# =========================
-# PIPELINE PRINCIPAL
-# =========================
-
 def process_csv_files(directory, output_file):
 
     all_files = glob.glob(os.path.join(directory, "*.csv"))
@@ -98,9 +90,7 @@ def process_csv_files(directory, output_file):
 
             out = pd.DataFrame()
 
-            # =========================
-            # COLONNES COMMUNES
-            # =========================
+    
 
             out["reference"]   = safe_series(df, "web_scraper_order")
             out["site_url"]    = safe_series(df, "web_scraper_start_url")
@@ -108,9 +98,7 @@ def process_csv_files(directory, output_file):
             out["description"] = safe_series(df, "description")
             out["image_url"]   = safe_series(df, "image")
 
-            # =========================
-            # COLONNES VIDES PAR DÉFAUT
-            # =========================
+         
 
             out["ville"]              = ""
             out["devise"]             = ""
@@ -118,31 +106,23 @@ def process_csv_files(directory, output_file):
             out["nombre_chambres"]    = ""
             out["nombre_salles_bain"] = ""
 
-            # =========================
-            # TYPE BIEN
-            # =========================
+         
 
             type_series    = safe_series(df, "title", "name")
             out["type_bien"] = type_series.apply(parse_type)
 
-            # =========================
-            # PRIX & VALEUR
-            # =========================
+
 
             price_series = safe_series(df, "price", "data")
             out["prix"]   = price_series
             out["valeur"] = price_series.apply(clean_number)
 
-            # =========================
-            # PAYS PAR DÉFAUT
-            # =========================
+        
 
             out["nom_pays"]  = "Inconnu"
             out["code_pays"] = "UNK"
 
-            # =========================
-            # ENRICHISSEMENT PAR SITE
-            # =========================
+
 
             if "angocasa" in name:
                 out["nom_pays"]  = "Angola"
@@ -177,9 +157,6 @@ def process_csv_files(directory, output_file):
         except Exception as e:
             print(f"❌ Erreur fichier {name} : {e}")
 
-    # =========================
-    # CONCAT & EXPORT FINAL
-    # =========================
 
     if not final_data:
         print("❌ Aucune donnée à exporter.")
@@ -205,7 +182,7 @@ def process_csv_files(directory, output_file):
         "image_url"
     ]
 
-    # Garantit que toutes les colonnes existent (jamais de KeyError)
+    
     for col in output_columns:
         if col not in df_final.columns:
             df_final[col] = ""
@@ -214,9 +191,6 @@ def process_csv_files(directory, output_file):
 
     df_final.to_excel(output_file, index=False)
 
-    # =========================
-    # STATS FINALES
-    # =========================
 
     print("\n=========================")
     print("📊 STATS FINALES")
@@ -229,10 +203,6 @@ def process_csv_files(directory, output_file):
     print("=========================")
     print(f"✅ Fichier créé : {output_file}")
 
-
-# =========================
-# EXECUTION
-# =========================
 
 CHEMIN = r"C:\Users\lagie\Desktop\stage mirvanie\Fichiers_Immo"
 OUTPUT = r"C:\Users\lagie\Desktop\stage mirvanie\resultat_final.xlsx"
